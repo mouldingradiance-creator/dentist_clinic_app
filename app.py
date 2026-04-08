@@ -10,13 +10,17 @@ app.secret_key = "secret123"
 
 import os
 
+import os
+import sqlite3
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, "database.db")
+
 def get_db():
-    db_path = os.path.join(os.getcwd(), 'database.db')
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
-    conn.row_factory = sqlite3.Row
-    return conn
+    app.config["DEBUG"] = True
 @app.route('/logout')
 def logout():
     session.clear()
